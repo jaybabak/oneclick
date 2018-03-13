@@ -9,16 +9,21 @@ var horseman = new Horseman();
 app.get('/api/hello', (req, res) => {
 
 
-  horseman
-    .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
-    .open('http://www.google.com')
-    .count('a')
-    .log() // prints out the number of results
-    .close();
+  // horseman
+  //   .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
+  //   .open('http://www.google.com')
+  //   .count('a')
+  //   .log() // prints out the number of results
+  //   .close();
+  //
+  //   console.log(horseman);
+  // console.log(req);
+  const location = req.query.location;
+  const keywords = req.query.keywords;
 
-    console.log(horseman);
+  console.log(location + ' --- ' + keywords);
 
-  res.send({ express: 'Hello From Expressasdsf' });
+  res.send({ express: 'Express works!' });
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
