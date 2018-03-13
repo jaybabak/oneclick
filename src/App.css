@@ -30,9 +30,10 @@ body {
 }
 
 .App-title {
-  font-size: 1.5em;
-  font-weight: 100;
-  letter-spacing: 10px;
+  font-size: 1.2em;
+  font-weight: 400;
+  /*letter-spacing: 10px;*/
+  text-align: left;
 }
 
 .App-intro {

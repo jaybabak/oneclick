@@ -7,13 +7,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">ONECLICK SEARCH</h1>
+          <h1 className="App-title">oneCLIK</h1>
         </header>
         <section>
           <SearchBar/>
         </section>
         <footer>
-          <p>Copyright 1Click.co</p>
+          <p>2018 Copyright oneCLIK.co</p>
         </footer>
       </div>
     );

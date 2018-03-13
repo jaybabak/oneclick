@@ -8,7 +8,7 @@ class SearchBar extends Component {
     this.state = {
       user: {
         keyword: '',
-        location: 'Ottawa, ON',
+        location: 'Ottawa',
       }
     }
 
