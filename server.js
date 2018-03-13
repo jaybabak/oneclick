@@ -21,7 +21,7 @@ app.get('/api/hello', (req, res) => {
   const location = req.query.location;
   const keywords = req.query.keywords;
 
-  console.log(location + ' --- ' + keywords);
+  console.log('Searching for ' + keywords + ' in ' + location);
 
   res.send({ express: 'Express works!' });
 });
