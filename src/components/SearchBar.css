@@ -38,7 +38,14 @@
   outline-width: 0px;
 }
 
-input:focus {
+.search-textfield:focus {
+
+  background-color: black;
+  color: white;
+
+}
+
+.search-bar input:focus {
 
   /*-webkit-border-radius: 43px;
   border-radius: 43px;*/
@@ -56,11 +63,19 @@ input:focus {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   padding: 10px 20px;
-  background-color: black;
+  background-color: rgba(32,124,229,1);
   color: white;
   font-weight: 700;
   -webkit-border-radius: 43px;
   border-radius: 43px;
+
+  -webkit-transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
+
+
+
 
 }
 

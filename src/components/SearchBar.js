@@ -27,7 +27,6 @@ class SearchBar extends Component {
     });
 
     console.log(this.state.user);
-
   }
 
   handleSubmit(event){
@@ -44,7 +43,7 @@ class SearchBar extends Component {
           <label>
             What are you searching for today?
           </label>
-          <input className="search-textfield" name="keyword" type="text" value={this.state.value} onChange={this.handleChange} />
+          <input placeholder="Begin your search..." className="search-textfield" name="keyword" type="text" value={this.state.value} onChange={this.handleChange} />
           <input className="search-submit" type="submit" value="Submit" />
         </form>
       </div>
