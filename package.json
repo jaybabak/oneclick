@@ -1,5 +1,5 @@
 {
-  "name": "example-create-react-app-express",
+  "name": "oneCLIK",
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
@@ -7,7 +7,9 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "node-horseman": "^3.3.0",
+    "phantom": "^4.0.12"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
