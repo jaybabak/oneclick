@@ -9,6 +9,7 @@ class SearchBar extends Component {
       user: {
         keyword: '',
         location: 'Ottawa',
+        response: null
       }
     }
 

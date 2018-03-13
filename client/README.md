@@ -11,6 +11,11 @@ cd your-project-folder
 
 run the command npm install
 
-and then yarn start or npm start
+!important --- run yarn dev if using node backend release/branch
+
+else yarn start or npm start
+
+
+
 
 -------------------------
