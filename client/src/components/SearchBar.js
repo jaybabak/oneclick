@@ -43,10 +43,11 @@ class SearchBar extends Component {
     this.callApi()
       .then((res) => {
 
+        console.log(res);
         this.setState({ response: res.status });
 
-        console.log(this.state.user);
-        console.log(this.state.response);
+        // console.log(this.state.user);
+        // console.log(this.state.response);
       })
       .catch(err => console.log(err));
   }
