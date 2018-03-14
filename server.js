@@ -1,6 +1,7 @@
 const express = require('express');
 var phantom = require('phantom');
 const app = express();
+const cheerio = require('cheerio');
 const port = process.env.PORT || 5000;
 
 var Horseman = require('node-horseman');
@@ -20,6 +21,7 @@ app.get('/api/hello', (req, res) => {
   // .type('input[name="login"]', username)
   // .type('input[name="password"]', password)
   // .click('input[name="commit"]')
+var dom;
 
 var z =  horseman
     .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
@@ -27,18 +29,20 @@ var z =  horseman
     .type('input[name="q"]', keywords)
     .click('input[name="btnK"]')
     .waitForNextPage()
-    .waitForSelector('.appbar')
-    // .evaluate(function(){
-    //
-    //
-    //
-    // })
-    .text('.appbar')
-    .then((text) => {
+    // .waitForSelector()
+    .html()
+    .then((html2) => {
+      dom = html2
+      // console.log(dom);
 
-      console.log(text);
+      const $ = cheerio.load(dom);
+
+      // console.log($('.appbar'));
+      var a = $('#resultStats').text();
+
+      console.log(a);
+
     })
-    .log() // prints out the number of results
     .close();
 
     // console.log(z);
