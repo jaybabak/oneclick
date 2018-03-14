@@ -38,7 +38,8 @@ class SearchBar extends Component {
     // console.log(this.state.user);
 
     this.setState({
-      message: 'Loading...........'
+      response: 'Searching the corners of the web!',
+      message: 'Please hold...........'
     });
 
 
