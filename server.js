@@ -43,17 +43,32 @@ var z =  horseman
       results = a;
       console.log(a);
 
-      res.send({
-        status: 'Searching for ' + keywords + ' in ' + location,
-        message: results
-      });
+      if(a !== null){
+        res.send({
+          status: 'Searching for ' + keywords + ' in ' + location,
+          message: results
+        });
+
+      }else {
+        res.send({
+          status: 'No results found.',
+          message: '0---'
+        });
+      }
+
 
     });
     // .close(); //this will cause the phantom process to die!!
 
     // console.log(z);
 
+    //LEFT OFF HERE:-------
+    /*
+      Found a way to select the drop down list by searching for the city
+      (text) in the dom and then setting the input form value
+      for location to the value of the li or the title attribute
 
+    */
 
 });
 

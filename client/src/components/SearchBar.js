@@ -37,7 +37,9 @@ class SearchBar extends Component {
 
     // console.log(this.state.user);
 
-
+    this.setState({
+      message: 'Loading...........'
+    });
 
 
     this.callApi()
