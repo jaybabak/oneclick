@@ -23,7 +23,7 @@ app.get('/api/hello', (req, res) => {
 
   console.log('Searching for ' + keywords + ' in ' + location);
 
-  res.send({ express: 'Express works!' });
+  res.send({ status: 'Your request has been submitted...magic otw!' });
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

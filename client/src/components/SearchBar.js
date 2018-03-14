@@ -8,13 +8,15 @@ class SearchBar extends Component {
     this.state = {
       user: {
         keywords: '',
-        location: 'Ottawa',
-        response: null
-      }
+        location: 'Ottawa'
+      },
+      response: null
+
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.callApi = this.callApi.bind(this);
   }
 
   handleChange(e){
@@ -31,30 +33,27 @@ class SearchBar extends Component {
   handleSubmit(event){
 
     event.preventDefault();
-    alert('We are currently working on making your search query for ' + this.state.user.keywords + ' come to life! Adding magic now....');
+    // alert('We are currently working on making your search query for ' + this.state.user.keywords + ' come to life! Adding magic now....');
 
-    console.log(this.state.user);
+    // console.log(this.state.user);
 
-    const field2 = event.target.name;
-    const user2 = this.state.user;
-    user2[field2] = event.target.value;
+
+
 
     this.callApi()
-      .then(res => this.setState({ user2 }))
+      .then((res) => {
+
+        this.setState({ response: res.status });
+
+        console.log(this.state.user);
+        console.log(this.state.response);
+      })
       .catch(err => console.log(err));
-
-
   }
 
   componentDidMount() {
 
-    // create a string for an HTTP body message
-    // const user = encodeURIComponent(this.state.user);
 
-
-    // this.callApi()
-    //   .then(res => this.setState({ user: {response: res.express }}))
-    //   .catch(err => console.log(err));
   }
 
   callApi = async () => {
@@ -81,6 +80,7 @@ class SearchBar extends Component {
           <input placeholder="Begin your search..." className="search-textfield" name="keywords" type="text" value={this.state.value} onChange={this.handleChange} />
           <input className="search-submit" type="submit" value="Submit" />
         </form>
+        <p className="message-status">{this.state.response}</p>
       </div>
     );
   }
