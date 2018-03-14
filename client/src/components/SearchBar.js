@@ -7,7 +7,7 @@ class SearchBar extends Component {
 
     this.state = {
       user: {
-        keywords: 'iPhone X',
+        keywords: '',
         location: 'Ottawa',
         response: null
       }
