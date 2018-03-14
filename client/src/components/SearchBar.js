@@ -10,8 +10,8 @@ class SearchBar extends Component {
         keywords: '',
         location: 'Ottawa'
       },
-      response: null
-
+      response: '',
+      message: 'No Search Performed Yet.'
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,10 +44,13 @@ class SearchBar extends Component {
       .then((res) => {
 
         console.log(res);
-        this.setState({ response: res.status });
+        this.setState({
+          response: res.status,
+          message: res.message
+        });
 
         // console.log(this.state.user);
-        // console.log(this.state.response);
+        console.log(this.state.message);
       })
       .catch(err => console.log(err));
   }
@@ -82,6 +85,7 @@ class SearchBar extends Component {
           <input className="search-submit" type="submit" value="Submit" />
         </form>
         <p className="message-status">{this.state.response}</p>
+        <div className="message-results">{this.state.message}</div>
       </div>
     );
   }

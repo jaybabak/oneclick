@@ -22,6 +22,7 @@ app.get('/api/hello', (req, res) => {
   // .type('input[name="password"]', password)
   // .click('input[name="commit"]')
 var dom;
+var results;
 
 var z =  horseman
     .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
@@ -39,19 +40,21 @@ var z =  horseman
 
       // console.log($('.appbar'));
       var a = $('#resultStats').text();
-
+      results = a;
       console.log(a);
 
-    })
-    .close();
+      res.send({
+        status: 'Searching for ' + keywords + ' in ' + location,
+        message: results
+      });
+
+    });
+    // .close(); //this will cause the phantom process to die!!
 
     // console.log(z);
 
 
-  res.send({
-    status: 'Searching for ' + keywords + ' in ' + location,
-    html: z
-  });
+
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
