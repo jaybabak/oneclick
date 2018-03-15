@@ -47,7 +47,7 @@ app.get('/api/hello', (req, res) => {
 
           $ = window.$ || window.jQuery;
 
-          var x = $('li > a:contains("Toronto")').eq(0);
+          var x = $('li > a:contains("Ottawa")').eq(0);
           // console.log(x.text());
 
 
@@ -63,18 +63,18 @@ app.get('/api/hello', (req, res) => {
 
         })
         .click('button[name="SearchSubmit"]')
-        .waitForNextPage()
+        .waitForNextPage({timeout: 10000})
         .html()
         .then((html2) => {
           dom = html2;
           console.log(dom);
           //
-          // const $ = cheerio.load(dom);
+          const $ = cheerio.load(dom);
           //
           // // console.log($('.appbar'));
-          // var a = $('#resultStats').text();
-          // results = a;
-          // console.log(results);
+          var a = $('.container-results').html();
+          results = a;
+          console.log(results);
           //
           // if(results){
           //   res.send({
