@@ -29,7 +29,7 @@ var z =  horseman
     .open('http://www.google.com')
     .catch(function(error){
 
-      console.log('-------------------' + error);
+      console.log('-------------------\n' + error);
 
     })
     .type('input[name="q"]', keywords)
