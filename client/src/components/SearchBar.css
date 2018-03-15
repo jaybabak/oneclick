@@ -24,24 +24,40 @@
   border: none;
   -webkit-border-radius: 43px;
   border-radius: 43px;
-  color: #6d6d6d;
+  /*color: white;*/
   -o-text-overflow: clip;
   text-overflow: clip;
   -webkit-box-shadow: 1px 0px 5px 0 rgba(0,0,0,0.3) ;
   box-shadow: 1px 0px 5px 0 rgba(0,0,0,0.3) ;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+  /*text-shadow: 1px 1px 0 rgba(255,255,255,0.66);*/
   -webkit-transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: background-color 200ms cubic-bezier(0.42, 0, 0.58, 1);
   outline-color: rgba(0,142,198,1);
   outline-width: 0px;
+
+
+  background: rgba(73,155,234,1);
+  background: -moz-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(32,124,229,1)));
+  background: -webkit-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: -o-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: -ms-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=1 );
+
+}
+
+.search-textfield::placeholder {
+  color: white;
 }
 
 .search-textfield:focus {
 
   background-color: black;
   color: white;
+  /*text-transform: capitalize;*/
 
 }
 
@@ -63,8 +79,8 @@
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   padding: 10px 20px;
-  background-color: rgba(32,124,229,1);
-  color: white;
+  background-color: white;
+  color: black;
   font-weight: 700;
   -webkit-border-radius: 43px;
   border-radius: 43px;
@@ -81,12 +97,13 @@
 
 .search-submit:hover{
 
-  background-color: white;
-  color:black;
+  background-color: rgba(0,37,81,1);
+  color:white;
 }
 
 .message-status {
 
+  /*border:*/
   color: green;
 
 }
