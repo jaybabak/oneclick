@@ -12,7 +12,7 @@ app.get('/api/hello', (req, res) => {
   const location = req.query.location;
   const keywords = req.query.keywords;
 
-  console.log('Searching for ' + keywords + ' in ' + location);
+  // console.log('Searching for ' + keywords + ' in ' + location);
 
 
   // var z = horseman
@@ -41,9 +41,9 @@ var z =  horseman
       // console.log($('.appbar'));
       var a = $('#resultStats').text();
       results = a;
-      console.log(a);
+      console.log(results);
 
-      if(a !== null){
+      if(results){
         res.send({
           status: 'Searching for ' + keywords + ' in ' + location,
           message: results
@@ -51,8 +51,8 @@ var z =  horseman
 
       }else {
         res.send({
-          status: 'No results found.',
-          message: '0---'
+          status: 'Try your search again!',
+          message: 'Your search did not return any results.'
         });
       }
 
