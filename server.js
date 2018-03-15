@@ -46,7 +46,7 @@ app.get('/api/hello', (req, res) => {
         // .waitForNextPage()
         // .waitForSelector()
         .html('.locationListContainer-3610177299')
-        .evaluate(function(keyws){
+        .evaluate(function(keyws, userLocation){
 
           $ = window.$ || window.jQuery;
 
@@ -55,17 +55,19 @@ app.get('/api/hello', (req, res) => {
 
           // var keywordField = $('input[name="keywords"]').attr('value', 'iphone');
           var keywordField = $('input[name="keywords"]').val(keyws);
-          console.log($('input[name="keywords"]').val());
+          // console.log($('input[name="keywords"]').val());
 
 
+          // var locationField = $('input[name="SearchLocationPicker"]').val();
           var locationField = $('input[name="SearchLocationPicker"]').attr('value');
+          console.log(locationField);
           userLocation = locationField;
           console.log(locationField);
 
           //
           // return x;
 
-        }, keywords)
+        }, keywords, userLocation)
         .click('button[name="SearchSubmit"]')
         .waitForNextPage({timeout: 10000})
         .html()
@@ -78,7 +80,8 @@ app.get('/api/hello', (req, res) => {
           // // console.log($('.appbar'));
           var a = $('.showing').text();
           results = a;
-          console.log(results);
+          // console.log(results);
+          console.log(userLocation);
           //
           if(results){
             res.send({
