@@ -12,6 +12,8 @@ app.get('/api/hello', (req, res) => {
   const location = req.query.location;
   const keywords = req.query.keywords;
 
+
+
   // console.log('Searching for ' + keywords + ' in ' + location);
 
 
@@ -27,6 +29,7 @@ app.get('/api/hello', (req, res) => {
 
     var dom;
     var results;
+    var userLocation;
 
     var z =  horseman
         .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
@@ -43,51 +46,52 @@ app.get('/api/hello', (req, res) => {
         // .waitForNextPage()
         // .waitForSelector()
         .html('.locationListContainer-3610177299')
-        .evaluate(function(){
+        .evaluate(function(keyws){
 
           $ = window.$ || window.jQuery;
 
           var x = $('li > a:contains("Ottawa")').eq(0);
           // console.log(x.text());
 
-
-          var keywordField = $('input[name="keywords"]').attr('value', 'iphone');
-          console.log($('input[name="keywords"]').attr('value'));
+          // var keywordField = $('input[name="keywords"]').attr('value', 'iphone');
+          var keywordField = $('input[name="keywords"]').val(keyws);
+          console.log($('input[name="keywords"]').val());
 
 
           var locationField = $('input[name="SearchLocationPicker"]').attr('value');
+          userLocation = locationField;
           console.log(locationField);
 
           //
           // return x;
 
-        })
+        }, keywords)
         .click('button[name="SearchSubmit"]')
         .waitForNextPage({timeout: 10000})
         .html()
         .then((html2) => {
           dom = html2;
-          console.log(dom);
+          // console.log(dom);
           //
           const $ = cheerio.load(dom);
           //
           // // console.log($('.appbar'));
-          var a = $('.container-results').html();
+          var a = $('.showing').text();
           results = a;
           console.log(results);
           //
-          // if(results){
-          //   res.send({
-          //     status: 'Searched for ' + keywords + ' in ' + location,
-          //     message: results
-          //   });
-          //
-          // }else {
-          //   res.send({
-          //     status: 'Try your search again!',
-          //     message: 'Your search did not return any results.'
-          //   });
-          // }
+          if(results){
+            res.send({
+              status: 'Searched for ' + keywords + ' in ' + userLocation,
+              message: results + ' results retrieved from Kijiji!'
+            });
+
+          }else {
+            res.send({
+              status: 'Try your search again!',
+              message: 'Your search did not return any results.'
+            });
+          }
 
 
         });
