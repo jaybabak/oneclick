@@ -50,7 +50,7 @@
 }
 
 .search-textfield::placeholder {
-  color: white;
+  color: rgb(139, 193, 255);
 }
 
 .search-textfield:focus {
