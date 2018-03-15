@@ -40,13 +40,34 @@ app.get('/api/hello', (req, res) => {
           console.log(msg);
         })
         // .type('input[name="keywords"]', keywords)
-        // .click('input[name="btnK"]')
         // .waitForNextPage()
         // .waitForSelector()
         .html('.locationListContainer-3610177299')
+        .evaluate(function(){
+
+          $ = window.$ || window.jQuery;
+
+          var x = $('li > a:contains("Toronto")').eq(0);
+          // console.log(x.text());
+
+
+          var keywordField = $('input[name="keywords"]').attr('value', 'iphone');
+          console.log($('input[name="keywords"]').attr('value'));
+
+
+          var locationField = $('input[name="SearchLocationPicker"]').attr('value');
+          console.log(locationField);
+
+          //
+          // return x;
+
+        })
+        .click('button[name="SearchSubmit"]')
+        .waitForNextPage()
+        .html()
         .then((html2) => {
           dom = html2;
-          // console.log(dom);
+          console.log(dom);
           //
           // const $ = cheerio.load(dom);
           //
@@ -69,17 +90,8 @@ app.get('/api/hello', (req, res) => {
           // }
 
 
-        })
-        .evaluate(function(){
-
-          $ = window.$ || window.jQuery;
-
-          var x = $('li > a:contains("Vancouver")').eq(1);
-          console.log(x.text());
-          //
-          // return x;
-
         });
+
         // .close(); //this will cause the phantom process to die!!
 
         // console.log(z);
