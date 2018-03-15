@@ -50,7 +50,7 @@ var z =  horseman
 
       if(results){
         res.send({
-          status: 'Searching for ' + keywords + ' in ' + location,
+          status: 'Searched for ' + keywords + ' in ' + location,
           message: results
         });
 
