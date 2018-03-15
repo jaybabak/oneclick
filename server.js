@@ -27,6 +27,11 @@ var results;
 var z =  horseman
     .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
     .open('http://www.google.com')
+    .catch(function(error){
+
+      console.log('-------------------' + error);
+
+    })
     .type('input[name="q"]', keywords)
     .click('input[name="btnK"]')
     .waitForNextPage()
