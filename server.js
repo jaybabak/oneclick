@@ -30,41 +30,54 @@ app.get('/api/hello', (req, res) => {
 
     var z =  horseman
         .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
-        .open('http://www.google.com')
+        .open('http://www.kijiji.com')
         .catch(function(error){
 
           console.log('-------------------\n' + error);
 
         })
-        .type('input[name="q"]', keywords)
-        .click('input[name="btnK"]')
-        .waitForNextPage()
+        .on('consoleMessage', function( msg ){
+          console.log(msg);
+        })
+        // .type('input[name="keywords"]', keywords)
+        // .click('input[name="btnK"]')
+        // .waitForNextPage()
         // .waitForSelector()
-        .html()
+        .html('.locationListContainer-3610177299')
         .then((html2) => {
-          dom = html2
+          dom = html2;
           // console.log(dom);
+          //
+          // const $ = cheerio.load(dom);
+          //
+          // // console.log($('.appbar'));
+          // var a = $('#resultStats').text();
+          // results = a;
+          // console.log(results);
+          //
+          // if(results){
+          //   res.send({
+          //     status: 'Searched for ' + keywords + ' in ' + location,
+          //     message: results
+          //   });
+          //
+          // }else {
+          //   res.send({
+          //     status: 'Try your search again!',
+          //     message: 'Your search did not return any results.'
+          //   });
+          // }
 
-          const $ = cheerio.load(dom);
 
-          // console.log($('.appbar'));
-          var a = $('#resultStats').text();
-          results = a;
-          console.log(results);
+        })
+        .evaluate(function(){
 
-          if(results){
-            res.send({
-              status: 'Searched for ' + keywords + ' in ' + location,
-              message: results
-            });
+          $ = window.$ || window.jQuery;
 
-          }else {
-            res.send({
-              status: 'Try your search again!',
-              message: 'Your search did not return any results.'
-            });
-          }
-
+          var x = $('li > a:contains("Vancouver")').eq(1);
+          console.log(x.text());
+          //
+          // return x;
 
         });
         // .close(); //this will cause the phantom process to die!!
