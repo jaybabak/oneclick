@@ -15,65 +15,86 @@ app.get('/api/hello', (req, res) => {
   // console.log('Searching for ' + keywords + ' in ' + location);
 
 
+
   // var z = horseman
   // .open('http://www.kijiji.com')
   // .title();
   // .type('input[name="login"]', username)
   // .type('input[name="password"]', password)
   // .click('input[name="commit"]')
-var dom;
-var results;
 
-var z =  horseman
-    .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
-    .open('http://www.google.com')
-    .catch(function(error){
+  if(location.trim() && keywords.trim()){
 
-      console.log('-------------------\n' + error);
+    var dom;
+    var results;
 
-    })
-    .type('input[name="q"]', keywords)
-    .click('input[name="btnK"]')
-    .waitForNextPage()
-    // .waitForSelector()
-    .html()
-    .then((html2) => {
-      dom = html2
-      // console.log(dom);
+    var z =  horseman
+        .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
+        .open('http://www.google.com')
+        .catch(function(error){
 
-      const $ = cheerio.load(dom);
+          console.log('-------------------\n' + error);
 
-      // console.log($('.appbar'));
-      var a = $('#resultStats').text();
-      results = a;
-      console.log(results);
+        })
+        .type('input[name="q"]', keywords)
+        .click('input[name="btnK"]')
+        .waitForNextPage()
+        // .waitForSelector()
+        .html()
+        .then((html2) => {
+          dom = html2
+          // console.log(dom);
 
-      if(results){
-        res.send({
-          status: 'Searched for ' + keywords + ' in ' + location,
-          message: results
+          const $ = cheerio.load(dom);
+
+          // console.log($('.appbar'));
+          var a = $('#resultStats').text();
+          results = a;
+          console.log(results);
+
+          if(results){
+            res.send({
+              status: 'Searched for ' + keywords + ' in ' + location,
+              message: results
+            });
+
+          }else {
+            res.send({
+              status: 'Try your search again!',
+              message: 'Your search did not return any results.'
+            });
+          }
+
+
         });
+        // .close(); //this will cause the phantom process to die!!
 
-      }else {
-        res.send({
-          status: 'Try your search again!',
-          message: 'Your search did not return any results.'
-        });
-      }
+        // console.log(z);
+
+        //LEFT OFF HERE:-------
+        /*
+          Found a way to select the drop down list by searching for the city
+          (text) in the dom and then setting the input form value
+          for location to the value of the li or the title attribute
+
+        */
 
 
+
+
+
+  }else{
+
+    res.send({
+      status: 'Cannot be empty!',
+      message: 'Try using keywords that are generic.'
     });
-    // .close(); //this will cause the phantom process to die!!
 
-    // console.log(z);
 
-    //LEFT OFF HERE:-------
-    /*
-      Found a way to select the drop down list by searching for the city
-      (text) in the dom and then setting the input form value
-      for location to the value of the li or the title attribute
 
-    */
+
+  }
+
 
 });
 
