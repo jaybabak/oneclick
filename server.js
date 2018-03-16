@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 const port = process.env.PORT || 5000;
 
 var Horseman = require('node-horseman');
-var horseman = new Horseman();
+
 
 app.get('/api/hello', (req, res) => {
 
@@ -31,9 +31,23 @@ app.get('/api/hello', (req, res) => {
     var results;
     var userLocation;
 
+
+    var horseman = new Horseman();
     var z =  horseman
         .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
         .open('http://www.kijiji.com')
+        .status()
+        .then(function(statusCode){
+
+          // console.log('HTTP status code: ', statusCode);
+
+          if (Number(statusCode) >= 400) {
+            throw 'Page failed with status: ' + statusCode;
+          }else if (Number(statusCode) == 200 || Number(statusCode) == 301){
+            console.log('Sucess! Staus Code: 200/301');
+          }
+
+        })
         .catch(function(error){
 
           console.log('-------------------\n' + error);
@@ -62,7 +76,7 @@ app.get('/api/hello', (req, res) => {
           var locationField = $('input[name="SearchLocationPicker"]').attr('value');
           console.log(locationField);
           userLocation = locationField;
-          console.log(locationField);
+          // console.log(locationField);
 
           //
           // return x;
@@ -82,10 +96,10 @@ app.get('/api/hello', (req, res) => {
           results = a;
           // console.log(results);
           console.log(userLocation);
-          //
+          //neet to set userLocation for status message below!
           if(results){
             res.send({
-              status: 'Searched for ' + keywords + ' in ' + userLocation,
+              status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: results + ' results retrieved from Kijiji!'
             });
 
