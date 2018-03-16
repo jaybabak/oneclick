@@ -7,6 +7,7 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "apac": "^3.0.2",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "node-horseman": "^3.3.0",

@@ -3,8 +3,17 @@ var phantom = require('phantom');
 const app = express();
 const cheerio = require('cheerio');
 const port = process.env.PORT || 5000;
-
+const {OperationHelper} = require('apac');
 var Horseman = require('node-horseman');
+
+
+const opHelper = new OperationHelper({
+    awsId:     'AKIAIWWTBHNGYYVT5EIQ',
+    awsSecret: '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',
+    assocId:   'oneclick00c-20',
+    locale: 'CA'
+});
+
 
 
 app.get('/api/hello', (req, res) => {
@@ -12,6 +21,18 @@ app.get('/api/hello', (req, res) => {
   const location = req.query.location;
   const keywords = req.query.keywords;
 
+
+  opHelper.execute('ItemSearch', {
+    'SearchIndex': 'All',
+    'Keywords': keywords,
+    'ResponseGroup': 'ItemAttributes,Offers',
+    'ItemPage': '1'
+  }).then((response) => {
+      console.log("Results object: ", response.result);
+      console.log("Raw response body: ", response.responseBody);
+  }).catch((err) => {
+      console.error("Something went wrong! ", err);
+  });
 
 
   // console.log('Searching for ' + keywords + ' in ' + location);
@@ -95,7 +116,7 @@ app.get('/api/hello', (req, res) => {
           var a = $('.showing').text();
           results = a;
           // console.log(results);
-          console.log(userLocation);
+          // console.log(userLocation);
           //neet to set userLocation for status message below!
           if(results){
             res.send({
