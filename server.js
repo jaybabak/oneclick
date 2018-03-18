@@ -30,6 +30,10 @@ app.get('/api/hello', (req, res) => {
   }).then((response) => {
       console.log("Results object: ", response.result);
       console.log("Raw response body: ", response.responseBody);
+
+
+
+
   }).catch((err) => {
       console.error("Something went wrong! ", err);
   });
@@ -90,7 +94,7 @@ app.get('/api/hello', (req, res) => {
 
           // var keywordField = $('input[name="keywords"]').attr('value', 'iphone');
           var keywordField = $('input[name="keywords"]').val(keyws);
-          // console.log($('input[name="keywords"]').val());
+          console.log($('input[name="keywords"]').val());
 
 
           // var locationField = $('input[name="SearchLocationPicker"]').val();
