@@ -60,8 +60,6 @@ app.get('/api/hello', (req, res) => {
 
     var nightmare = Nightmare();
 
-    const bod = 'body';
-
     var ghost = nightmare
         .goto('http://www.kijiji.com')
         .insert('input[name="keywords"]', keywords)
@@ -69,8 +67,19 @@ app.get('/api/hello', (req, res) => {
         .wait('body')
         .evaluate(function () {
 
+          var rows = [];
+
           if(document.querySelectorAll('.showing').length > 0){
-            return document.querySelector('.showing').innerText;
+
+            var searchItems = document.querySelectorAll('.search-item');
+            console.log(searchItems);
+
+
+            rows.data = searchItems;
+            rows.results = document.querySelector('.showing').innerText;
+
+            // console.log(rows);
+            return rows;
           }else{
             return null;
           }
@@ -84,10 +93,11 @@ app.get('/api/hello', (req, res) => {
           if(result){
             res.send({
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
-              message: result + ' results retrieved from Kijiji!'
+              message: result.results + ' results retrieved from Kijiji!',
+              data: result.data
             });
 
-          }else if(result == null) {
+          }else if(result.results == null) {
             res.send({
               status: 'Try your search again!',
               message: 'Your search did not return any results.'
@@ -95,40 +105,10 @@ app.get('/api/hello', (req, res) => {
           }
 
 
-
-
         })
         .catch(function (error) {
           console.error('Search failed:', error);
         });
-
-
-        //
-        // .goto('http://www.kijiji.com')
-        // .then(function(page){
-        //
-        //   if (Number(page.code) >= 400) {
-        //     throw 'Page failed with status: ' + page.code;
-        //   }else if (Number(page.code) == 200 || Number(page.code) == 301){
-        //     console.log('Sucess! Staus Code: ' + page.code);
-        //     // return page;
-        //   }
-        //
-        //
-        // })
-        // .wait('50000')
-        // .type('input[name="keywords"]', keywords)
-        // .click('button[name="SearchSubmit"]')
-        // .wait('.showing')
-        // .evaluate(() => {
-        //   var bod = document.querySelector('body');
-        //   console.log(bod);
-        //   return bod;
-        // })
-        // .then((value) => console.log(value));
-        // .catch(error => {
-        //   console.warn('Search failed:', error);
-        // })
 
 
     // var horseman = new Horseman();
