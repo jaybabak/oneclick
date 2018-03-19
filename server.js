@@ -67,7 +67,7 @@ app.get('/api/hello', (req, res) => {
         .wait('body')
         .evaluate(function () {
 
-          var rows = [];
+          var rows = {};
 
           if(document.querySelectorAll('.showing').length > 0){
 
