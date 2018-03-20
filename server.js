@@ -62,17 +62,22 @@ app.get('/api/hello', (req, res) => {
 
     var ghost = nightmare
         .goto('http://www.kijiji.com')
+        .inject('js', 'node_modules/jquery/dist/jquery.min.js')
         .insert('input[name="keywords"]', keywords)
         .click('button[name="SearchSubmit"]')
-        .wait('body')
+        // .wait('body')
         .evaluate(function () {
 
           var rows = {};
 
           if(document.querySelectorAll('.showing').length > 0){
 
-            var searchItems = document.querySelectorAll('.search-item');
-            console.log(searchItems);
+            // var searchItems = document.querySelectorAll('.search-item').innerHTML;
+            var searchItems = $('.container-results').html();
+            // function test(){
+              console.log(searchItems);
+            // }
+
 
 
             rows.data = searchItems;
