@@ -4,6 +4,7 @@ const app = express();
 const cheerio = require('cheerio');
 const port = process.env.PORT || 5000;
 const {OperationHelper} = require('apac');
+var htmlparser = require("htmlparser2");
 var Horseman = require('node-horseman');
 
 const Nightmare = require('nightmare');
@@ -31,7 +32,7 @@ app.get('/api/hello', (req, res) => {
     'ItemPage': '1'
   }).then((response) => {
       // console.log("Results object: ", response.result);
-      // console.log("Raw response body: ", response.responseBody);
+      console.log("Raw response body: ", response.responseBody);
 
 
 
@@ -58,7 +59,9 @@ app.get('/api/hello', (req, res) => {
     var results;
     var userLocation;
 
-    var nightmare = Nightmare();
+    var nightmare = Nightmare({
+      show: true
+    });
 
     var ghost = nightmare
         .goto('http://www.kijiji.com')
@@ -73,7 +76,7 @@ app.get('/api/hello', (req, res) => {
           if(document.querySelectorAll('.showing').length > 0){
 
             // var searchItems = document.querySelectorAll('.search-item').innerHTML;
-            var searchItems = $('.container-results').html();
+            var searchItems = $('.search-item').html();
             // function test(){
               console.log(searchItems);
             // }
@@ -93,13 +96,23 @@ app.get('/api/hello', (req, res) => {
         })
         .end()
         .then(function (result) {
-          // console.log(result)
+          // console.log(result.data)
+
+
+          //LEFT OFF HERE TRYING TO GET KJHTML TO SEND BACK
+
+          const kjHtml = htmlparser.parseDOM(result);
+          const kjJson = htmlparser.parseDOM(result.data);
+          // debugger;
+          console.log(kjJson);
 
           if(result){
+            // res.json(kjHtml);
             res.send({
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: result.results + ' results retrieved from Kijiji!',
-              data: result.data
+              // data: kjJson
+              data: result
             });
 
           }else if(result.results == null) {

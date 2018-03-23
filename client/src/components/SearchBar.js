@@ -11,7 +11,8 @@ class SearchBar extends Component {
         location: 'Ottawa'
       },
       response: '',
-      message: 'No Search Performed Yet.'
+      message: 'No Search Performed Yet.',
+      data: null
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -49,11 +50,13 @@ class SearchBar extends Component {
         console.log(res);
         this.setState({
           response: res.status,
-          message: res.message
+          message: res.message,
+          data: res.message.data
         });
 
         // console.log(this.state.user);
         console.log(this.state.message);
+        console.log(this.state.data);
       })
       .catch(err => console.log(err));
   }

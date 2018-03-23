@@ -10,10 +10,12 @@
     "apac": "^3.0.2",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
+    "htmlparser2": "^3.9.2",
     "jquery": "^3.3.1",
     "nightmare": "^3.0.0",
     "node-horseman": "^3.3.0",
-    "phantom": "^4.0.12"
+    "phantom": "^4.0.12",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
