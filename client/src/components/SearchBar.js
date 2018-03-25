@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SearchBar.css';
+import Interweave from 'interweave';
 
 class SearchBar extends Component {
   constructor(props){
@@ -12,7 +13,7 @@ class SearchBar extends Component {
       },
       response: '',
       message: 'No Search Performed Yet.',
-      data: null
+      data: 'When you go in search of honey you must expect to be stung by bees. - J.J.'
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,7 +52,7 @@ class SearchBar extends Component {
         this.setState({
           response: res.status,
           message: res.message,
-          data: res.message.data
+          data: res.data
         });
 
         // console.log(this.state.user);
@@ -82,16 +83,36 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div onSubmit={this.handleSubmit} className="search-bar">
-        <form>
-          <label>
-            What are you searching for today?
-          </label>
-          <input placeholder="Begin your search..." className="search-textfield" name="keywords" type="text" value={this.state.value} onChange={this.handleChange} />
-          <input className="search-submit" type="submit" value="Submit" />
-        </form>
-        <p className="message-status">{this.state.response}</p>
-        <div className="message-results">{this.state.message}</div>
+      <div className="search-app">
+        <div onSubmit={this.handleSubmit} className="search-bar">
+          <form>
+            <label>
+              What are you searching for today?
+            </label>
+            <input placeholder="Begin your search..." className="search-textfield" name="keywords" type="text" value={this.state.value} onChange={this.handleChange} />
+            <input className="search-submit" type="submit" value="Submit" />
+          </form>
+          <p className="message-status">{this.state.response}</p>
+          <div className="message-results">{this.state.message}</div>
+        </div>
+        <div className="message-data">
+          <Interweave
+            className="message-data"
+            tagName="div"
+            content={this.state.data}
+          />
+        </div>
+
+        {/* <div className="message-data">
+            {this.state.data.map((arrs) => <div>
+            <Interweave
+                className="message-data"
+                tagName="div"
+                content={arrs}
+              />
+
+            </div> )}
+        </div> */}
       </div>
     );
   }

@@ -6,6 +6,7 @@ const port = process.env.PORT || 5000;
 const {OperationHelper} = require('apac');
 var htmlparser = require("htmlparser2");
 var Horseman = require('node-horseman');
+var parseString = require('xml2js').parseString;
 
 const Nightmare = require('nightmare');
 
@@ -32,9 +33,16 @@ app.get('/api/hello', (req, res) => {
     'ItemPage': '1'
   }).then((response) => {
       // console.log("Results object: ", response.result);
-      console.log("Raw response body: ", response.responseBody);
+      // console.log("Raw response body: ", response.responseBody);
 
 
+
+      //XML STUFF HERE
+      // var xml = response.responseBody;
+      //
+      // parseString(xml, function (err, result) {
+      //     console.dir(result.ItemSearchResponse.$);
+      // });
 
 
   }).catch((err) => {
@@ -89,6 +97,8 @@ app.get('/api/hello', (req, res) => {
             // console.log(rows);
             return rows;
           }else{
+            // rows.data = null;
+            // rows.results = null;
             return null;
           }
 
@@ -101,21 +111,27 @@ app.get('/api/hello', (req, res) => {
 
           //LEFT OFF HERE TRYING TO GET KJHTML TO SEND BACK
 
-          const kjHtml = htmlparser.parseDOM(result);
-          const kjJson = htmlparser.parseDOM(result.data);
+          // const kjHtml = htmlparser.parseDOM(result);
+          // const kjJson = htmlparser.parseDOM(result.data);
+
+
           // debugger;
-          console.log(kjJson);
+          // console.log(result.data);
 
           if(result){
             // res.json(kjHtml);
+
+            let newBuff = Buffer.from(result.data);
+            console.log(newBuff.toString('utf8'));
+
             res.send({
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: result.results + ' results retrieved from Kijiji!',
               // data: kjJson
-              data: result
+              data: result.data
             });
 
-          }else if(result.results == null) {
+          }else if(result == null) {
             res.send({
               status: 'Try your search again!',
               message: 'Your search did not return any results.'

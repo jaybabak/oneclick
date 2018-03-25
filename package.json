@@ -11,6 +11,7 @@
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "htmlparser2": "^3.9.2",
+    "interweave": "^8.0.2",
     "jquery": "^3.3.1",
     "nightmare": "^3.0.0",
     "node-horseman": "^3.3.0",
