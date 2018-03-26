@@ -76,7 +76,7 @@ app.get('/api/hello', (req, res) => {
         .inject('js', 'node_modules/jquery/dist/jquery.min.js')
         .insert('input[name="keywords"]', keywords)
         .click('button[name="SearchSubmit"]')
-        // .wait('body')
+        .wait('.showing')
         .evaluate(function () {
 
           var rows = {};
@@ -121,13 +121,14 @@ app.get('/api/hello', (req, res) => {
           if(result){
             // res.json(kjHtml);
 
-            let newBuff = Buffer.from(result.data);
-            console.log(newBuff.toString('utf8'));
+            // let newBuff = Buffer.from(result.data);
+            // console.log(newBuff);
+            // console.log(newBuff.toString('utf8'));
 
             res.send({
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: result.results + ' results retrieved from Kijiji!',
-              // data: kjJson
+              // buffer: newBuff,
               data: result.data
             });
 

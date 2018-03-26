@@ -102,7 +102,6 @@ class SearchBar extends Component {
             content={this.state.data}
           />
         </div>
-
         {/* <div className="message-data">
             {this.state.data.map((arrs) => <div>
             <Interweave
