@@ -84,7 +84,8 @@ app.get('/api/hello', (req, res) => {
           if(document.querySelectorAll('.showing').length > 0){
 
             // var searchItems = document.querySelectorAll('.search-item').innerHTML;
-            var searchItems = $('.search-item').html();
+            // var searchItems = $('.search-item').html();
+            var searchItems = $('.container-results').html();
             // function test(){
               console.log(searchItems);
             // }
