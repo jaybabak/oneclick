@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "apac": "^3.0.2",
+    "buffer": "^5.1.0",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "htmlparser2": "^3.9.2",
@@ -16,6 +17,7 @@
     "nightmare": "^3.0.0",
     "node-horseman": "^3.3.0",
     "phantom": "^4.0.12",
+    "to-arraybuffer": "^1.0.1",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {

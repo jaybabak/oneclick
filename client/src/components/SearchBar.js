@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './SearchBar.css';
 import Interweave from 'interweave';
+var Buffer = require('buffer/').Buffer;
+var toArrayBuffer = require('to-arraybuffer');
 
 class SearchBar extends Component {
   constructor(props){
@@ -13,7 +15,8 @@ class SearchBar extends Component {
       },
       response: '',
       message: 'No Search Performed Yet.',
-      data: 'When you go in search of honey you must expect to be stung by bees. - J.J.'
+      data: 'When you go in search of honey you must expect to be stung by bees. - J.J.',
+      buffer: null
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,16 +51,24 @@ class SearchBar extends Component {
     this.callApi()
       .then((res) => {
 
-        console.log(res);
+        // console.log(res.buffer);
+        // toArrayBuffer(res.buffer);
+        // console.log('----------------------------------------------');
+        // console.log(res.buffer);
+        var xbe = Buffer.from(JSON.parse(res.buffer).data)
+        console.log(xbe.toString('utf8'));
+
         this.setState({
           response: res.status,
           message: res.message,
-          data: res.data
+          data: res.data,
+          buffer: res.buffer
         });
 
         // console.log(this.state.user);
-        console.log(this.state.message);
-        console.log(this.state.data);
+        // console.log(this.state.message);
+        // console.log(this.state.data);
+        // console.log(this.state.buffer);
       })
       .catch(err => console.log(err));
   }

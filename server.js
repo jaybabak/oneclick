@@ -121,14 +121,17 @@ app.get('/api/hello', (req, res) => {
           if(result){
             // res.json(kjHtml);
 
-            // let newBuff = Buffer.from(result.data);
-            // console.log(newBuff);
-            // console.log(newBuff.toString('utf8'));
+            console.log(result.data);
+
+            let newBuff = Buffer.from(result.data);
+            var zb = JSON.stringify(newBuff);
+            // console.log(zb);
+            console.log(newBuff.toString('utf8'));
 
             res.send({
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: result.results + ' results retrieved from Kijiji!',
-              // buffer: newBuff,
+              buffer: zb,
               data: result.data
             });
 
