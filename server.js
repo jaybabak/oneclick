@@ -76,7 +76,7 @@ app.get('/api/hello', (req, res) => {
         .inject('js', 'node_modules/jquery/dist/jquery.min.js')
         .insert('input[name="keywords"]', keywords)
         .click('button[name="SearchSubmit"]')
-        .wait('.showing')
+        .wait()
         .evaluate(function () {
 
           var rows = {};
@@ -84,7 +84,7 @@ app.get('/api/hello', (req, res) => {
           if(document.querySelectorAll('.showing').length > 0){
 
             // var searchItems = document.querySelectorAll('.search-item').innerHTML;
-            // var searchItems = $('.search-item').html();
+            // var searchItems = $('.search-item').html();g
             var searchItems = $('.container-results').html();
             // function test(){
               console.log(searchItems);
@@ -139,7 +139,9 @@ app.get('/api/hello', (req, res) => {
           }else if(result == null) {
             res.send({
               status: 'Try your search again!',
-              message: 'Your search did not return any results.'
+              message: 'Your search did not return any results.',
+              buffer: null,
+              data: '<h3>Maybe you should return to doing some real work...</h3>',
             });
           }
 

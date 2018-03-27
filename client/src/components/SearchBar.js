@@ -53,10 +53,10 @@ class SearchBar extends Component {
 
         // console.log(res.buffer);
         // toArrayBuffer(res.buffer);
-        // console.log('----------------------------------------------');
-        // console.log(res.buffer);
-        var xbe = Buffer.from(JSON.parse(res.buffer).data)
-        console.log(xbe.toString('utf8'));
+        if(res.buffer != null){
+          var xbe = Buffer.from(JSON.parse(res.buffer).data);
+        }
+
 
         this.setState({
           response: res.status,
