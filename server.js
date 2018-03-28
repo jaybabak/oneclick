@@ -68,7 +68,7 @@ app.get('/api/hello', (req, res) => {
     var userLocation;
 
     var nightmare = Nightmare({
-      show: true
+      // show: true
     });
 
     var ghost = nightmare
@@ -76,7 +76,7 @@ app.get('/api/hello', (req, res) => {
         .inject('js', 'node_modules/jquery/dist/jquery.min.js')
         .insert('input[name="keywords"]', keywords)
         .click('button[name="SearchSubmit"]')
-        .wait()
+        .wait('#Footer')
         .evaluate(function () {
 
           var rows = {};
@@ -133,7 +133,8 @@ app.get('/api/hello', (req, res) => {
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: result.results + ' results retrieved from Kijiji!',
               buffer: zb,
-              data: result.data
+              data: result.data,
+              loading: 'hidden'
             });
 
           }else if(result == null) {
@@ -142,6 +143,7 @@ app.get('/api/hello', (req, res) => {
               message: 'Your search did not return any results.',
               buffer: null,
               data: '<h3>Maybe you should return to doing some real work...</h3>',
+              loading: 'hidden'
             });
           }
 

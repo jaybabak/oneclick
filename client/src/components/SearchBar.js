@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './SearchBar.css';
 import Interweave from 'interweave';
 var Buffer = require('buffer/').Buffer;
-var toArrayBuffer = require('to-arraybuffer');
 
 class SearchBar extends Component {
   constructor(props){
@@ -16,7 +15,8 @@ class SearchBar extends Component {
       response: '',
       message: 'No Search Performed Yet.',
       data: 'When you go in search of honey you must expect to be stung by bees. - J.J.',
-      buffer: null
+      buffer: null,
+      isLoading: 'hidden'
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,10 +41,12 @@ class SearchBar extends Component {
     // alert('We are currently working on making your search query for ' + this.state.user.keywords + ' come to life! Adding magic now....');
 
     // console.log(this.state.user);
+    document.querySelector('.search-textfield').value = '';
 
     this.setState({
       response: 'Searching the corners of the web!',
-      message: 'Loading....'
+      message: 'Loading....',
+      isLoading: 'active'
     });
 
 
@@ -53,16 +55,22 @@ class SearchBar extends Component {
 
         // console.log(res.buffer);
         // toArrayBuffer(res.buffer);
+        // console.log('----------------------------------------------');
+        // console.log(res.buffer);
+        var xbe = null;
         if(res.buffer != null){
-          var xbe = Buffer.from(JSON.parse(res.buffer).data);
+          xbe = Buffer.from(JSON.parse(res.buffer).data)
+          // console.log(xbe.toString('utf8'));
         }
 
+        console.log(res);
 
         this.setState({
           response: res.status,
           message: res.message,
           data: res.data,
-          buffer: res.buffer
+          buffer: res.buffer,
+          isLoading: res.loading
         });
 
         // console.log(this.state.user);
@@ -113,6 +121,7 @@ class SearchBar extends Component {
             content={this.state.data}
           />
         </div>
+        <div id="overlay" className={this.state.isLoading}><div className="loader"></div></div>
         {/* <div className="message-data">
             {this.state.data.map((arrs) => <div>
             <Interweave
