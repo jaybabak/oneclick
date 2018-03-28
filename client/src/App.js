@@ -6,9 +6,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <header className="App-header">
-          <h1 className="App-title">oneCLIK</h1>
-        </header> */}
+        {/* <header className="App-header"> */}
+          <h1 className="App-title">| BAMBOO |</h1>
+        {/* </header> */}
         <section>
           <SearchBar/>
         </section>

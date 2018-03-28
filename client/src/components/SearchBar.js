@@ -121,7 +121,7 @@ class SearchBar extends Component {
             content={this.state.data}
           />
         </div>
-        <div id="overlay" className={this.state.isLoading}><div className="loader"></div></div>
+        <div id="overlay" className={this.state.isLoading}><div className="loader"></div>Panda is finding your things...</div>
         {/* <div className="message-data">
             {this.state.data.map((arrs) => <div>
             <Interweave

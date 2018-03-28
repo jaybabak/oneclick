@@ -34,7 +34,9 @@ body {
   font-size: 1.2em;
   font-weight: 400;
   /*letter-spacing: 10px;*/
-  text-align: left;
+  text-align: center;
+  font-size: 36px;
+  padding-top: 80px;
 }
 
 .App-intro {
@@ -73,6 +75,10 @@ width: 100%;
 background-color: rgba(0, 0, 0, 0.8);;
 height: 100%;
 z-index: 1;
+text-align: center;
+color: white;
+font-weight: 200;
+font-size: 24px;
 }
 
 .active {
@@ -82,6 +88,8 @@ z-index: 1;
 .hidden {
   display: none;
 }
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
@@ -100,6 +108,7 @@ z-index: 1;
   display: block;
   margin: 0 auto;
   margin-top: 10.5%;
+  margin-bottom: 25px;
 
 }
 
