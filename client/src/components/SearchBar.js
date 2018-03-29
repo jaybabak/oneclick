@@ -16,7 +16,8 @@ class SearchBar extends Component {
       message: 'No Search Performed Yet.',
       data: 'When you go in search of honey you must expect to be stung by bees. - J.J.',
       buffer: null,
-      isLoading: 'hidden'
+      isLoading: 'hidden',
+      query: 'hidden'
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,12 +42,13 @@ class SearchBar extends Component {
     // alert('We are currently working on making your search query for ' + this.state.user.keywords + ' come to life! Adding magic now....');
 
     // console.log(this.state.user);
-    document.querySelector('.search-textfield').value = '';
+    // document.querySelector('.search-textfield').value = '';
 
     this.setState({
       response: 'Searching the corners of the web!',
       message: 'Loading....',
-      isLoading: 'active'
+      isLoading: 'active',
+      query: 'hidden'
     });
 
 
@@ -57,20 +59,21 @@ class SearchBar extends Component {
         // toArrayBuffer(res.buffer);
         // console.log('----------------------------------------------');
         // console.log(res.buffer);
-        var xbe = null;
+        // var xbe = null;
         if(res.buffer != null){
-          xbe = Buffer.from(JSON.parse(res.buffer).data)
+          // xbe = Buffer.from(JSON.parse(res.buffer).data)
           // console.log(xbe.toString('utf8'));
         }
 
-        console.log(res);
+        // console.log(res);
 
         this.setState({
           response: res.status,
           message: res.message,
           data: res.data,
           buffer: res.buffer,
-          isLoading: res.loading
+          isLoading: res.loading,
+          query: 'active'
         });
 
         // console.log(this.state.user);
@@ -84,6 +87,25 @@ class SearchBar extends Component {
   componentDidMount() {
 
 
+      var clearBtn = document.querySelector('#clear-button');
+      var resultsWrapper = document.querySelector('.message-data');
+      // console.log(resultsWrapper);
+
+      clearBtn.addEventListener('click', function (e) {
+        //
+        //
+        //
+        var name = "slideUp";
+        var name2 = "slided";
+
+        var arr = resultsWrapper.className.split(" ");
+        if (arr.indexOf(name) === -1) {
+            resultsWrapper.className += " " + name;
+            // resultsWrapper.className += " " + name2;
+            setTimeout(function(){ window.location.reload(); }, 700);
+        }
+
+      });
   }
 
   callApi = async () => {
@@ -108,8 +130,9 @@ class SearchBar extends Component {
             <label>
               What are you searching for today?
             </label>
-            <input placeholder="Begin your search..." className="search-textfield" name="keywords" type="text" value={this.state.value} onChange={this.handleChange} />
+            <input autoComplete="off" placeholder="Begin your search..." className="search-textfield" name="keywords" type="text" value={this.state.value} onChange={this.handleChange} autofocus="autofocus" />
             <input className="search-submit" type="submit" value="Submit" />
+            <span id="clear-button" className={this.state.query}>Clear</span>
           </form>
           <p className="message-status">{this.state.response}</p>
           <div className="message-results">{this.state.message}</div>

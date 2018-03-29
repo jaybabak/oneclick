@@ -267,3 +267,8 @@ app.get('/api/hello', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+
+//APPROACH FOR GETTING THE RESULTS FROM kijiji
+//SUBMIT THE FORM AND RETURN THE URL THEN USE A SEPERATE REQUEST LIBRARY TO RETURN THE FULL HTML STRING PARSED

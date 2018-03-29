@@ -141,3 +141,31 @@
 .search-app {
   /*overflow: auto;*/
 }
+
+#clear-button {
+  /*position: absolute;*/
+  position: absolute;
+  bottom: 21px;
+  right: 34%;
+  background-color: #fff136;
+  border-radius: 45px;
+  padding: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  font-size: 11px;
+  text-transform: uppercase;
+
+}
+
+#clear-button:hover {
+  /*position: absolute;*/
+  background-color: white;
+  color: black;
+  cursor: pointer;
+
+}
+
+
+form {
+  position: relative;
+}
