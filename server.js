@@ -24,25 +24,27 @@ app.get('/api/hello', (req, res) => {
 
   const location = req.query.location;
   const keywords = req.query.keywords;
+  var amazonResponse = '';
 
 
   opHelper.execute('ItemSearch', {
     'SearchIndex': 'All',
     'Keywords': keywords,
-    'ResponseGroup': 'ItemAttributes,Offers',
+    'ResponseGroup': 'ItemAttributes,Offers,Images',
     'ItemPage': '1'
   }).then((response) => {
       // console.log("Results object: ", response.result);
       // console.log("Raw response body: ", response.responseBody);
 
-
-
       //XML STUFF HERE
-      // var xml = response.responseBody;
+      var xml = response.responseBody;
       //
-      // parseString(xml, function (err, result) {
-      //     console.dir(result.ItemSearchResponse.$);
-      // });
+      parseString(xml, function (err, result) {
+          // console.dir(result.ItemSearchResponse.Items);
+          amazonResponse = JSON.stringify(result.ItemSearchResponse.Items);
+          console.log(amazonResponse);
+
+      });
 
 
   }).catch((err) => {
@@ -87,7 +89,7 @@ app.get('/api/hello', (req, res) => {
             // var searchItems = $('.search-item').html();g
             var searchItems = $('.container-results').html();
             // function test(){
-              console.log(searchItems);
+              // console.log(searchItems);
             // }
 
 
@@ -122,19 +124,20 @@ app.get('/api/hello', (req, res) => {
           if(result){
             // res.json(kjHtml);
 
-            console.log(result.data);
+            // console.log(result.data);
 
             let newBuff = Buffer.from(result.data);
             var zb = JSON.stringify(newBuff);
             // console.log(zb);
-            console.log(newBuff.toString('utf8'));
+            // console.log(newBuff.toString('utf8'));
 
             res.send({
               status: 'Searched for ' + keywords + ' in ' + 'your location!',
               message: result.results + ' results retrieved from Kijiji!',
               buffer: zb,
               data: result.data,
-              loading: 'hidden'
+              loading: 'hidden',
+              amazon: amazonResponse
             });
 
           }else if(result == null) {
