@@ -4,6 +4,7 @@ const app = express();
 const cheerio = require('cheerio');
 const port = process.env.PORT || 5000;
 const {OperationHelper} = require('apac');
+const path = require('path');
 var htmlparser = require("htmlparser2");
 var Horseman = require('node-horseman');
 var parseString = require('xml2js').parseString;
@@ -17,6 +18,8 @@ const opHelper = new OperationHelper({
     assocId:   'oneclick00c-20',
     locale: 'CA'
 });
+
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function(request, response) {
