@@ -18,12 +18,12 @@ const opHelper = new OperationHelper({
     assocId:   'oneclick00c-20',
     locale: 'CA'
 });
-
+1
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 // All remaining requests return the React app, so it can handle routing.
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+app.get('/', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
 });
 
 
@@ -77,7 +77,7 @@ app.get('/api/hello', (req, res) => {
     var userLocation;
 
     var nightmare = Nightmare({
-      // show: true
+      show: true
     });
 
     var ghost = nightmare

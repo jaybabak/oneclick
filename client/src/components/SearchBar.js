@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SearchBar.css';
-import Interweave from 'interweave';
+import SearchResults from './SearchResults';
 var Buffer = require('buffer/').Buffer;
 
 class SearchBar extends Component {
@@ -124,6 +124,7 @@ class SearchBar extends Component {
 
   render() {
     return (
+      <div>
       <div className="search-app">
         <div onSubmit={this.handleSubmit} className="search-bar">
           <form>
@@ -137,25 +138,12 @@ class SearchBar extends Component {
           <p className="message-status">{this.state.response}</p>
           <div className="message-results">{this.state.message}</div>
         </div>
-        <div className="message-data">
-          <Interweave
-            className="message-data"
-            tagName="div"
-            content={this.state.data}
-          />
-        </div>
         <div id="overlay" className={this.state.isLoading}><div className="loader"></div>Panda is finding your things...</div>
-        {/* <div className="message-data">
-            {this.state.data.map((arrs) => <div>
-            <Interweave
-                className="message-data"
-                tagName="div"
-                content={arrs}
-              />
-
-            </div> )}
-        </div> */}
       </div>
+      <div className="message-data">
+        <SearchResults data={this.state.data}/>
+      </div>
+    </div>
     );
   }
 }
