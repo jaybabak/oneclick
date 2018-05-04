@@ -14,7 +14,7 @@ class SearchBar extends Component {
       },
       response: '',
       message: 'No Search Performed Yet.',
-      data: 'When you go in search of honey you must expect to be stung by bees. - J.J.',
+      data: '...',
       buffer: null,
       isLoading: 'hidden',
       query: 'hidden'
