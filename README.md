@@ -7,18 +7,18 @@ This project was bootstrapped with [Create React App](https://github.com/react-c
 *** Backend: Node.js
 *** Front-end: React
 *** Libraries/Dependencies: 
-**** dependencies
-**** apac
-**** buffer
-**** cheerio
-**** express
-**** htmlparser2
-**** interweave
-**** jquery
-**** nightmare
-**** node-horseman
-**** phantom
-**** to-arraybuffer
-**** xml2js
+dependencies
+apac
+buffer
+cheerio
+express
+htmlparser2
+interweave
+jquery
+nightmare
+node-horseman
+phantom
+to-arraybuffer
+xml2js
 
 ## Updating to New Releases
