@@ -21,4 +21,3 @@ phantom
 to-arraybuffer
 xml2js
 
-## Updating to New Releases
