@@ -6,9 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/react-c
 * Technologies used:
 *** Backend: Node.js
 *** Front-end: React
-*** Libraries/Dependencies: 
 
-* apac
+* Libraries/Dependencies: apac
 buffer
 cheerio
 express
