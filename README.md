@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/react-c
 ## ONECLIK
 
 * A genereal purpose web crawler built to scrape/retrieve source code (HTML)
-** Technologies used:
+* Technologies used:
 *** Backend: Node.js
 *** Front-end: React
 *** Libraries/Dependencies: 
